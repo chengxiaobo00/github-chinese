@@ -80,7 +80,7 @@ changed_files_json=""
 for file_path in "${changed_files[@]}"; do
     changed_files_json+="{
             \"path\": \"$file_path\",
-            \"contents\": \"$(base64 < "$file_path")\"
+            \"contents\": \"$(base64 -w0 < "$file_path")\"
           },
           "
 done
