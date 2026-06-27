@@ -134,6 +134,8 @@ graphql_request='{
     }
   }
 }'
+echo "$graphql_request" > debug.json
+jq . debug.json || { echo "❌ JSON 非法，请检查 debug.json" >&2; exit 1; }
 
 echo "$graphql_request" | gh api graphql --input - | jq -r '
     if .data?.createCommitOnBranch?.commit?.url then
